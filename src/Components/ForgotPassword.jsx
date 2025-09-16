@@ -51,7 +51,7 @@ const ForgotPassword = () => {
           </button>
         </form>
         <Link
-          to="/"
+        
           className="mt-6 text-blue-400 hover:underline text-sm"
         >
           Go Back to Login

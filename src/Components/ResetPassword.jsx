@@ -26,7 +26,7 @@ const ResetPassword = () => {
 
     try {
       await axios.post(`/api/auth/resetPassword/${token}`, { newPassword });
-      navigate("/");
+      navigate("/ForgotPassword");
     } catch (err) {
       setError("Failed to reset password");
       setLoading(false);
@@ -87,12 +87,12 @@ const ResetPassword = () => {
           </button>
         </form>
 
-        <Link
-          to="/login"
+        <button
+          
           className="mt-6 text-blue-400 hover:underline text-sm"
         >
           Go Back to Login
-        </Link>
+        </button>
       </div>
     </div>
   );
