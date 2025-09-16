@@ -13,7 +13,7 @@ const ForgotPassword = () => {
   setLoading(true);
     try {
       await axios.post("/api/auth/forgotPassword", { email });
-      navigate("/reset-password");
+      navigate("/resetPassword");
     } catch (err) {
       setError("Failed to send reset link");
     } finally {
@@ -51,7 +51,7 @@ const ForgotPassword = () => {
           </button>
         </form>
         <Link
-          to="/login"
+          to="/"
           className="mt-6 text-blue-400 hover:underline text-sm"
         >
           Go Back to Login

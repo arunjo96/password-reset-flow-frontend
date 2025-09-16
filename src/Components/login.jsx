@@ -17,7 +17,7 @@ const login = () => {
     try {
       const res = await axios.post("/api/auth/login", { email, password });
     
-      navigate("/login"); 
+      navigate("/"); 
     } catch (err) {
       if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
@@ -71,7 +71,7 @@ const login = () => {
             Sign Up
           </Link>
           <Link
-            to="/forgot-password"
+            to="/forgotPassword"
             className="text-blue-400 hover:underline text-sm"
           >
             Forgot Password?

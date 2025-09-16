@@ -83,7 +83,7 @@ const Register = () => {
           </button>
         </form>
         <div className="flex flex-col items-center mt-6 gap-2 w-full">
-          <Link to="/login" className="text-blue-400 hover:underline text-sm">
+          <Link to="/" className="text-blue-400 hover:underline text-sm">
             Already have an account? Login
           </Link>
         </div>
