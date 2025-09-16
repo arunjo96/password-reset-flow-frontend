@@ -12,7 +12,6 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={ <div className="min-h-fullscreen">Home</div>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/reset-password" element={<ResetPassword />} />

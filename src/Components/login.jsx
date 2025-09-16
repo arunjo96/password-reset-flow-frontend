@@ -17,7 +17,7 @@ const login = () => {
     try {
       const res = await axios.post("/api/auth/login", { email, password });
     
-      navigate("/"); 
+      navigate("/login"); 
     } catch (err) {
       if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
