@@ -1,5 +1,7 @@
 
 import React from 'react';
+import Login from "./Components/Login";
+import Register from "./Components/Register";
 import ForgotPassword from "./Components/ForgotPassword";
 import ResetPassword from './Components/ResetPassword';
 
@@ -11,8 +13,10 @@ const App = () => {
   return (
     <>
       <Routes>
+        <Route path="/register" element={<Register />} />
+       `<Route path ="/login" element={<Login />} />
         <Route path="/resetPassword/:token" element={<ResetPassword />} />
-        <Route path="/forgotPassword" element={<ForgotPassword />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </>
   );

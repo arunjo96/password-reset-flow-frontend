@@ -13,7 +13,7 @@ const ForgotPassword = () => {
   setLoading(true);
     try {
       await axios.post("/api/auth/forgotPassword", { email });
-      navigate("/resetPassword");
+      navigate("/resetPassword/:token");
     } catch (err) {
       setError("Failed to send reset link");
     } finally {
@@ -37,21 +37,22 @@ const ForgotPassword = () => {
             required
           />
           {error && <p className="text-red-500 text-sm">{error}</p>}
-       
+
           <button
             type="submit"
             disabled={loading}
             className={`w-full py-2 cursor-pointer rounded-lg font-semibold text-white transition ${
               loading
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-700"
+                : "bg-indigo-600 hover:bg-indigo-700"
             }`}
+           
           >
             {loading ? "Sending..." : "Send Reset Link"}
           </button>
         </form>
         <Link
-        
+          to={"/login"}
           className="mt-6 text-blue-400 hover:underline text-sm"
         >
           Go Back to Login
