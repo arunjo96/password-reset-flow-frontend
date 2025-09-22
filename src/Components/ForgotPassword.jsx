@@ -1,21 +1,27 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  setLoading(true);
+    setLoading(true);
+    setError("");
+    setSuccess("");
+
     try {
-      await axios.post("/api/auth/forgotPassword", { email });
-      navigate("/resetPassword/:token");
+      await axios.post("/api/auth/forgotPassword", {
+        email,
+      });
+      setSuccess("Password reset link has been sent to your email");
+      setEmail("");
     } catch (err) {
-      setError("Failed to send reset link");
+      setError("Failed to send reset link. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -27,16 +33,19 @@ const ForgotPassword = () => {
         <h1 className="text-3xl font-medium text-black mb-6">
           Forgot Password
         </h1>
+
         <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
           <input
             type="email"
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="px-4 py-2 rounded-lg  text-black border  border-gray-200 focus:outline-none "
+            className="px-4 py-2 rounded-lg text-black border border-gray-200 focus:outline-none"
             required
           />
+
           {error && <p className="text-red-500 text-sm">{error}</p>}
+          {success && <p className="text-green-500 text-sm">{success}</p>}
 
           <button
             type="submit"
@@ -46,13 +55,13 @@ const ForgotPassword = () => {
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-indigo-600 hover:bg-indigo-700"
             }`}
-           
           >
             {loading ? "Sending..." : "Send Reset Link"}
           </button>
         </form>
+
         <Link
-          to={"/login"}
+          to="/login"
           className="mt-6 text-blue-400 hover:underline text-sm"
         >
           Go Back to Login
@@ -63,4 +72,3 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
-

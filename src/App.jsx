@@ -15,8 +15,8 @@ const App = () => {
       <Routes>
         <Route path="/register" element={<Register />} />
        `<Route path ="/login" element={<Login />} />
-        <Route path="/resetPassword/:token" element={<ResetPassword />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/resetPassword/:token" element={<ResetPassword />} />
       </Routes>
     </>
   );

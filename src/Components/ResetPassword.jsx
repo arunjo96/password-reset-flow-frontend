@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -14,23 +14,27 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   const { token } = useParams();
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError("");
 
     if (newPassword !== confirmNewPassword) {
       setError("Passwords do not match");
       setLoading(false);
       return;
     }
+
     try {
-      await axios.post(`/api/auth/resetPassword/${token}`, { newPassword });
+      await axios.post(
+        `/api/auth/resetPassword/${token}`,
+        {
+          newPassword,
+        }
+      );
       navigate("/login");
     } catch (err) {
-      setError("Failed to reset password");
-      setLoading(false);
+      setError("Failed to reset password. Try again.");
     } finally {
       setLoading(false);
     }
@@ -42,7 +46,7 @@ const ResetPassword = () => {
         <h1 className="text-3xl font-medium text-black mb-6">Reset Password</h1>
 
         <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
-
+       
           <div className="relative w-full">
             <input
               type={showNewPassword ? "text" : "password"}
@@ -60,6 +64,7 @@ const ResetPassword = () => {
             </span>
           </div>
 
+      
           <div className="relative w-full">
             <input
               type={showConfirmPassword ? "text" : "password"}
@@ -90,7 +95,6 @@ const ResetPassword = () => {
 
         <Link
           to="/login"
-          
           className="mt-6 text-blue-400 hover:underline text-sm"
         >
           Go Back to Login
